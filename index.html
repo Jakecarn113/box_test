@@ -13,6 +13,19 @@
 <script type="text/javascript">
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
+
+	  var box = {
+		size: 20,
+		color: "blue",
+		x: 300,
+		y: 200
+	}
+
+	 function drawRect(){
+      context.fillStyle = box.color
+      context.fillRect( box.x, box.y, box.size, box.size);
+    }
+    drawRect()
 </script>
 
 </body>
