@@ -16,13 +16,14 @@
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
     var maxSize = 40;
+    var colors = ["green","blue","red","purple","orange","yellow"]
     var boxes = [];
     function createBox(){
       return {
         x: randomNum(canvas.width - maxSize),
         y: randomNum(canvas.height - maxSize),
         size: randomNum(maxSize) + 5,
-        color: "blue"
+        color: colors[randomNum(colors.length)]
       }
     }
     function randomNum(n){
