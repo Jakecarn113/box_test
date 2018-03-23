@@ -1,32 +1,46 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Boxes</title>
-	<style type="text/css">
-		canvas {
-			background-color: black;
-		}
-	</style>
+  <title>Circle Test</title>
+  <style type="text/css">
+    canvas{
+      background-color: black;
+    }
+  </style>
 </head>
 <body>
-<canvas id="canvas" width="600" height="400"></canvas>
-<script type="text/javascript">
-	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext("2d");
+  <canvas id="canvas" height="400" width="600"></canvas>
 
-	  var box = {
-		size: 20,
-		color: "blue",
-		x: 300,
-		y: 200
-	}
-
-	 function drawRect(){
-      context.fillStyle = box.color
-      context.fillRect( box.x, box.y, box.size, box.size);
+  <script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var maxSize = 20;
+    var boxes = [];
+    function createBox(){
+      return {
+        x: randomNum(canvas.width - maxSize),
+        y: randomNum(canvas.height - maxSize),
+        size: 20,
+        color: "blue"
+      }
     }
-    drawRect()
-</script>
-
+    function randomNum(n){
+      return Math.floor(Math.random() * n);
+    }
+    function createBoxes(n){
+      for(i=0; i<n; i++){
+        boxes.push(createBox());
+      }
+    }
+    function drawBoxes(){
+      for(i=0; i<boxes.length; i++){
+        context.fillStyle = boxes[i].color;
+        context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size)
+      }
+    }
+    createBoxes(3);
+    drawBoxes();
+  </script>
 </body>
 </html>
