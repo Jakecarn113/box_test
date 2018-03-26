@@ -2,63 +2,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Circle Test</title>
+  <title>boxes</title>
   <style type="text/css">
-    canvas{
+    canvas {
       background-color: black;
     }
   </style>
 </head>
 <body>
-  <canvas id="canvas" height="400" width="600"></canvas>
+<canvas id="canvas" width="600" height="400"></canvas>
 
-  <script type="text/javascript">
-    var canvas = document.getElementById("canvas");
-    var context = canvas.getContext("2d");
-    var maxSize = 40;
-    var colors = ["green","blue","red","purple","orange","yellow"]
-    var Maxdur = 100;
-    var boxes = [];
-    function createBox(){
-      return {
-        x: randomNum(canvas.width - maxSize),
-        y: randomNum(canvas.height - maxSize),
-        size: randomNum(maxSize) + 5,
-        color: colors[randomNum(colors.length)],
-        duration: randomNum(Maxdur) + 10
+<script type="text/javascript">
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  var colors = ["red","green","blue","black"];
+  var boxes = [];
+  var gameSettings = {
+    maxSize: 40,
+    maxDuration: 100,
+    numberOfBoxes: 10
+  }
+  function randomNum(n) {
+    return Math.floor(Math.random() * n);
+  }
+  function createBox() {
+    return {
+      x: randomNum(canvas.width - gameSettings.maxSize),
+      y: randomNum(canvas.height - gameSettings.maxSize),
+      size: randomNum(gameSettings.maxSize) + 10,
+      color: colors[randomNum(colors.length)],
+      duration: randomNum(gameSettings.maxDuration) + 10
+    }
+  }
+  function createBoxes(n) {
+    for (i = 0; i < n; i++) {
+      boxes.push(createBox());
+    }
+  }
+  function drawBoxes() {
+    for (i = 0; i < boxes.length; i++) {
+      context.fillStyle = boxes[i].color;
+      context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size);
+    }
+  }
+  function reduceDuration() {
+    for (i = 0; i < boxes.length; i++) {
+      boxes[i].duration--;
+      if (boxes[i].duration <= 0) {
+        boxes[i] = createBox();
       }
     }
-    function randomNum(n){
-      return Math.floor(Math.random() * n);
-    }
-    function createBoxes(n){
-      for(i=0; i<n; i++){
-        boxes.push(createBox());
-      }
-    }
-    function drawBoxes(){
-      for(i=0; i<boxes.length; i++){
-        context.fillStyle = boxes[i].color;
-        context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size)
-      }
-    }
-    function reduceDuration() {
-   for (i = 0; i < boxes.length; i++) {
-     boxes[i].duration--;
-          if (boxes[i].duration <= 0) {
-       boxes[i] = createBox();
-     }
-   }
- }
-
- function runGame() {
-   context.clearRect(0,0,canvas.width,canvas.height);
-   drawBoxes();
-   reduceDuration();
-   requestAnimationFrame(runGame);
- }
-     runGame();
-    createBoxes(3);
-  </script>
+  }
+  function runGame() {
+    context.clearRect(0,0,canvas.width,canvas.height);
+    drawBoxes();
+    reduceDuration();
+    requestAnimationFrame(runGame);
+  }
+  createBoxes(gameSettings.numberOfBoxes);
+  runGame();
+</script>
 </body>
 </html>
