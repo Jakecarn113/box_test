@@ -42,8 +42,19 @@
         context.fillRect(boxes[i].x,boxes[i].y,boxes[i].size,boxes[i].size)
       }
     }
+    function reduceDuration() {
+   for (i = 0; i < boxes.length; i++) {
+     boxes[i].duration--;
+   }
+ }
+
+ function run() {
+   drawBoxes();
+   reduceDuration();
+   requestAnimationFrame(run);
+ }
+     run();
     createBoxes(3);
-    drawBoxes();
   </script>
 </body>
 </html>
