@@ -51,13 +51,13 @@
    }
  }
 
- function run() {
+ function runGame() {
    context.clearRect(0,0,canvas.width,canvas.height);
    drawBoxes();
    reduceDuration();
-   requestAnimationFrame(run);
+   requestAnimationFrame(runGame);
  }
-     run();
+     runGame();
     createBoxes(3);
   </script>
 </body>
