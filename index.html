@@ -1,7 +1,13 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Circle Test</title>
+  <style type="text/css">
+    canvas{
+      background-color: black;
+    }
+  </style>
 </head>
 <body>
   <canvas id="canvas" height="400" width="600"></canvas>
@@ -9,17 +15,17 @@
   <script type="text/javascript">
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    var colors = ["blue", "green", "black", "red","orange","purple"];
-    var boxes = [];
     var maxSize = 40;
-    var maxDuration = 100;
+    var colors = ["green","blue","red","purple","orange","yellow"]
+    var Maxdur = 100;
+    var boxes = [];
     function createBox(){
       return {
         x: randomNum(canvas.width - maxSize),
         y: randomNum(canvas.height - maxSize),
-        size: randomNum(maxSize) + 10,
+        size: randomNum(maxSize) + 5,
         color: colors[randomNum(colors.length)],
-        duration: randomNum(maxDuration) + 10
+        duration: randomNum(Maxdur) + 10
       }
     }
     function randomNum(n){
