@@ -22,9 +22,9 @@
     ];
     var circles = [];
     var gameSettings = {
-      numberOfCircles: 15,
+      numberOfCircles: 20,
       maxSize: 30,
-      maxDuration: 50
+      maxDuration: 500
     }
     function randomNum(max){
       return Math.floor(Math.random() * max)
@@ -45,12 +45,18 @@
     }
     function step() {
       for(i=0; i < circles.length; i++) {
+        moveCircle(circles[i]);
         circles[i].duration--;
         if(circles[i].duration < 0) {
           circles[i] = createCircle();
         }
       }
     }
+    
+    function moveCircle(circle) {
+      circle.x++;
+    }
+
     function draw(){
       context.clearRect(0, 0, canvas.width, canvas.height);
       for(i=0; i<circles.length; i++) {
