@@ -4,9 +4,16 @@
 <head>
   <title>Circles</title>
 </head>
+<style type="text/css">
+  body {
+    background-color: purple
+  }
+</style>
 <body>
+<center>
   <canvas id="canvas" width="600px" height="400px" 
   style="background-color: black;"></canvas>
+</center>
   <script type="text/javascript">
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
@@ -16,15 +23,15 @@
       "green",
       "orange",
       "white",
-      "purple",
+      "navy",
       "yellow",
       "pink"
     ];
     var circles = [];
     var gameSettings = {
-      numberOfCircles: 20,
+      numberOfCircles: 50,
       maxSize: 30,
-      maxDuration: 500
+      maxDuration: 300
     }
     function randomNum(max){
       return Math.floor(Math.random() * max)
